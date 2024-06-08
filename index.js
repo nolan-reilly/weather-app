@@ -1,5 +1,6 @@
 const form = document.getElementById("form");
 const temp = document.getElementById("temp");
+
 // Need a better name for this DOM value as location interferes with the other portions of the code
 const text = document.getElementById("text");
 
@@ -10,6 +11,7 @@ form.addEventListener("submit", async (e) => {
     const location = form.location.value.toLowerCase();
 
     const weatherData = await getWeatherData(location);
+    displayLocation(location);
     displayTemperature(weatherData);
 })
 
@@ -21,6 +23,10 @@ async function getWeatherData(location) {
     } catch {
         console.error("Error:", error);
     }
+}
+
+function displayLocation(location) {
+    text.textContent = location;
 }
 
 function displayTemperature(weatherData) {
